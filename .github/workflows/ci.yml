@@ -32,3 +32,17 @@ jobs:
 
       - name: Push Docker image
         run: docker compose push
+            - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker pull vikashasm/learn-node:latest
+            docker stop learn-node || true
+            docker rm learn-node || true
+            docker run -d \
+              --name learn-node \
+              -p 3000:3000 \
+              vikashasm/learn-node:latest
