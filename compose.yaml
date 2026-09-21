@@ -1,5 +1,6 @@
 services:
   app:
+    image: vikashasm/learn-node:latest
     build: 
       context: .
       dockerfile : Dockerfile
