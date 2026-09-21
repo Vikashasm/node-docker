@@ -4,7 +4,7 @@ import express from 'express'
 const app= express()
 
 app.get('/',(req,res)=>{
-    res.send("your server is healthy and working okay for now")
+    res.send("your server is healthy ")
 })
 
 app.listen(3000,()=>{
